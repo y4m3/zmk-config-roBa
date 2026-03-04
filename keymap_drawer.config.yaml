@@ -1,0 +1,4 @@
+parse_config:
+  zmk_combos:
+    unstuck:
+      hidden: true
