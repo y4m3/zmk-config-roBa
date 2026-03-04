@@ -20,6 +20,14 @@
 };
 
 / {
+    macros {
+        release_mods: release_mods {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_release &kp LSHFT &kp LCTRL &kp LALT &kp LGUI &kp RSHFT &kp RCTRL &kp RALT &kp RGUI>;
+        };
+    };
+
     behaviors {
         hm: home_row_mod {
             compatible = "zmk,behavior-hold-tap";
@@ -45,7 +53,7 @@
         };
 
         kana {
-            bindings = <&kp INT_HENKAN>;
+            bindings = <&kp LANG1>;
             key-positions = <12 13>;
             timeout-ms = <50>;
             require-prior-idle-ms = <150>;
@@ -53,11 +61,17 @@
         };
 
         eisu {
-            bindings = <&kp INT_MUHENKAN>;
+            bindings = <&kp LANG2>;
             key-positions = <18 19>;
             timeout-ms = <50>;
             require-prior-idle-ms = <150>;
             layers = <0>;
+        };
+
+        unstuck {
+            bindings = <&release_mods>;
+            key-positions = <34 42>;
+            timeout-ms = <50>;
         };
     };
 
@@ -113,7 +127,7 @@
 
         NAV {
             bindings = <
-&kp CAPS      &trans      &trans       &trans       &trans                                    &kp HOME  &kp PG_DN  &kp PG_UP  &kp END    &kp INS
+&trans        &trans      &trans       &trans       &trans                                    &kp HOME  &kp PG_DN  &kp PG_UP  &kp END    &kp INS
 &hm LCTRL A   &hm LALT S  &hm LSHFT D  &hm LGUI F  &trans  &trans          &trans           &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &trans
 &trans        &trans      &trans       &trans       &trans  &trans          &trans           &trans    &trans     &trans     &trans     &trans
 &trans        &trans      &trans       &trans       &trans  &trans          &kp DEL          &trans                                     &trans

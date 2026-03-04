@@ -133,7 +133,7 @@ layers:
   - {type: held}
   - {t: ▽, type: trans}
   NAV:
-  - CAPS
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -357,8 +357,10 @@ combos:
   k: ESC
   l: [BASE]
 - p: [12, 13]
-  k: INT HENKAN
+  k: LANG1
   l: [BASE]
 - p: [18, 19]
-  k: INT MUHENKAN
+  k: LANG2
   l: [BASE]
+- p: [34, 42]
+  k: '&release_mods'
