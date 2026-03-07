@@ -12,9 +12,9 @@ layers:
   - O
   - P
   - {t: A, h: LCTRL}
-  - {t: S, h: LALT}
-  - {t: D, h: LSHFT}
-  - {t: F, h: LGUI}
+  - {t: S, h: LSHFT}
+  - {t: D, h: LALT}
+  - {t: F, h: LCTRL}
   - G
   - ''
   - ;
@@ -22,28 +22,28 @@ layers:
   - J
   - K
   - L
-  - '-'
+  - ENTER
   - {t: Z, h: LSHFT}
   - X
   - C
   - V
   - B
-  - ''''
-  - /
+  - '-'
+  - '='
   - N
   - M
   - ','
   - .
-  - {t: '=', h: NAV}
-  - '`'
+  - {t: /, h: NAV}
+  - {t: '''', h: Ctl+LSHFT}
+  - LGUI
   - LCTRL
-  - LALT
   - {t: TAB, h: NUM}
   - {t: SPACE, h: SCROLL}
-  - {t: ESC, h: LGUI}
-  - BACKSPACE
-  - {t: ENTER, h: TILE}
-  - \
+  - {t: LANG1, h: NAV}
+  - {t: LANG2, h: TILE}
+  - {t: BACKSPACE, s: DELETE}
+  - {t: ESC, h: Sft+Alt+`}
   NUM:
   - '7'
   - '8'
@@ -129,30 +129,29 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
   - {type: held}
   - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   NAV:
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
   - HOME
   - PG DN
   - PG UP
   - END
   - INS
-  - {t: A, h: LCTRL}
-  - {t: S, h: LALT}
-  - {t: D, h: LSHFT}
-  - {t: F, h: LGUI}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - UP
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - LEFT
-  - DOWN
-  - UP
   - RIGHT
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -165,6 +164,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  - DOWN
   - {t: ▽, type: trans}
   - {type: held}
   - {t: ▽, type: trans}
@@ -217,8 +217,8 @@ layers:
   - {type: held}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
   - {type: held}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   MOUSE:
   - {t: ▽, type: trans}
@@ -319,7 +319,7 @@ layers:
   - {t: BT, h: '2'}
   - {t: BT, h: '3'}
   - {t: BT, h: '4'}
-  - {t: ▽, type: trans}
+  - {t: BASE_MAC, h: toggle}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -352,6 +352,50 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - BT CLR ALL
+  BASE_MAC:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: F, h: LGUI}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - LGUI
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
 combos:
 - p: [11, 12]
   k: ESC
