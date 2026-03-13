@@ -40,8 +40,8 @@ layers:
   - LCTRL
   - {t: TAB, h: NUM}
   - {t: SPACE, h: SCROLL}
-  - {t: LANG1, h: NAV}
-  - {t: LANG2, h: TILE}
+  - {t: Ctl+Z, h: NAV}
+  - {t: Ctl+Sft+LALT, h: TILE}
   - {t: BACKSPACE, s: DELETE}
   - {t: ESC, h: Sft+Alt+`}
   NUM:
