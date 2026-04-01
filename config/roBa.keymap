@@ -112,10 +112,10 @@
 
         NUM {
             bindings = <
-&kp N7   &kp N8   &kp N9   &trans      &trans                                    &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT
+&kp N7   &kp N8   &kp N9   &kp GRAVE   &kp PSCRN                                 &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT
 &kp N4   &kp N5   &kp N6   &kp ASTRK   &kp FSLH   &trans          &kp UNDER    &kp LPAR   &kp RPAR   &kp LBKT   &kp RBKT   &kp CARET
 &kp N1   &kp N2   &kp N3   &kp PLUS    &kp MINUS  &kp EQUAL       &kp TILDE    &kp LBRC   &kp RBRC   &kp AMPS   &kp ASTRK  &kp BSLH
-&kp N0   &trans   &kp DOT  &trans      &trans     &trans          &kp DEL      &trans                                        &kp PIPE
+&kp N0   &kp COMMA &kp DOT  &trans      &trans     &trans          &kp DEL      &trans                                        &kp PIPE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
