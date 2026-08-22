@@ -46,6 +46,12 @@
             bindings = <&kp BACKSPACE>, <&kp DELETE>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
+        scroll_encoder: scroll_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_RIGHT>, <&msc SCRL_LEFT>;
+        };
     };
 
     combos {
@@ -102,7 +108,7 @@
 &hm LC(LSHFT) SQT &kp LGUI &kp LCTRL &lt 1 TAB    &lt 5 SPACE  &lt 2 ESC        &kp RSHFT                &bs_del                    &lt 3 ESC
             >;
 
-            sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+            sensor-bindings = <&inc_dec_kp DOWN UP>;
         };
 
         SYM {
@@ -134,6 +140,8 @@
 &kp F1  &kp F2  &kp F3  &kp F10  &trans   &trans          &kp PSCRN           &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE    &trans      &trans
 &trans  &trans  &trans  &trans   &trans   &trans          &trans              &trans                                                 &trans
             >;
+
+            sensor-bindings = <&inc_dec_kp LA(RIGHT) LA(LEFT)>;
         };
 
         MOUSE {
@@ -143,6 +151,8 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans    &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                &trans
             >;
+
+            sensor-bindings = <&inc_dec_kp LC(EQUAL) LC(MINUS)>;
         };
 
         SCROLL {
@@ -152,6 +162,8 @@
 &trans  &trans  &trans        &trans         &trans  &trans      &trans      &trans           &trans            &trans             &trans        &trans
 &trans  &trans  &trans        &trans         &trans  &trans      &trans      &trans                                                              &trans
             >;
+
+            sensor-bindings = <&scroll_encoder>;
         };
 
         CONFIG {
