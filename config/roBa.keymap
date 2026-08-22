@@ -15,8 +15,8 @@
 };
 
 &trackball {
-    automouse-layer = <5>;
-    scroll-layers = <6>;
+    automouse-layer = <4>;
+    scroll-layers = <5>;
 };
 
 / {
@@ -85,14 +85,9 @@
     conditional_layers {
         compatible = "zmk,conditional-layers";
 
-        fun_layer {
-            if-layers = <1 2>;
-            then-layer = <4>;
-        };
-
         config_layer {
-            if-layers = <6 1>;
-            then-layer = <7>;
+            if-layers = <1 3>;
+            then-layer = <6>;
         };
     };
 
@@ -102,42 +97,31 @@
         BASE {
             bindings = <
 &kp Q        &kp W       &kp E      &kp R        &kp T                                          &kp Y      &kp U  &kp I      &kp O    &kp P
-&hm LCTRL A  &hm LSHFT S &hm LALT D &hm LCTRL F  &kp G        &none            &kp SEMI        &kp H      &kp J  &kp K      &kp L    &kp ENTER
-&hm LSHFT Z  &kp X      &kp C       &kp V        &kp B        &kp MINUS        &kp EQUAL       &kp N      &kp M  &kp COMMA  &kp DOT  &lt 3 FSLH
-&hm LC(LSHFT) SQT &kp LGUI &kp LCTRL &lt 1 TAB    &lt 6 SPACE  &lt 3 LC(Z)      &lt 2 LC(LS(LALT))       &bs_del                             &kp ESC
+&hm LCTRL A  &hm LSHFT S &hm LALT D &hm LCTRL F  &kp G        &kp GRAVE        &kp SEMI        &kp H      &kp J  &kp K      &kp L    &kp ENTER
+&hm LSHFT Z  &kp X      &kp C       &kp V        &kp B        &kp MINUS        &kp EQUAL       &kp N      &kp M  &kp COMMA  &kp DOT  &lt 2 FSLH
+&hm LC(LSHFT) SQT &kp LGUI &kp LCTRL &lt 1 TAB    &lt 5 SPACE  &lt 2 ESC        &kp RSHFT                &bs_del                    &lt 3 ESC
             >;
 
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
 
-        NUM {
+        SYM {
             bindings = <
-&kp N7   &kp N8   &kp N9   &kp GRAVE   &kp PSCRN                                 &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT
-&kp N4   &kp N5   &kp N6   &kp ASTRK   &kp FSLH   &trans          &kp UNDER    &kp LPAR   &kp RPAR   &kp LBKT   &kp RBKT   &kp CARET
-&kp N1   &kp N2   &kp N3   &kp PLUS    &kp MINUS  &kp EQUAL       &kp TILDE    &kp LBRC   &kp RBRC   &kp AMPS   &kp ASTRK  &kp BSLH
-&kp N0   &kp COMMA &kp DOT  &trans      &trans     &trans          &kp DEL      &trans                                        &kp PIPE
+&kp N1    &kp N2    &kp N3    &kp N4    &kp N5                                     &kp N6     &kp N7     &kp N8     &kp N9    &kp N0
+&kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT  &kp TILDE        &kp COLON     &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR
+&kp BSLH  &kp PIPE  &kp LBKT  &kp RBKT  &kp DQT    &kp UNDER        &kp PLUS      &kp LBRC   &kp RBRC   &trans     &trans    &trans
+&trans    &trans    &trans    &trans    &trans     &trans           &kp LCTRL     &trans                                     &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
-        TILE {
-            bindings = <
-&kp LA(N7)  &kp LA(N8)  &kp LA(N9)  &trans      &trans                                    &trans     &trans     &trans     &trans     &trans
-&kp LA(N4)  &kp LA(N5)  &kp LA(N6)  &trans      &trans  &trans          &trans             &kp LA(H)  &kp LA(J)  &kp LA(K)  &kp LA(L)  &trans
-&kp LA(N1)  &kp LA(N2)  &kp LA(N3)  &kp LA(N0)  &trans  &trans          &trans             &trans     &trans     &trans     &trans     &kp LSHFT
-&kp LA(N0)  &trans      &trans      &trans      &trans  &trans          &trans             &trans                                       &trans
-            >;
-
-            sensor-bindings = <&inc_dec_kp LA(O) LA(I)>;
-        };
-
         NAV {
             bindings = <
-&kp HOME      &kp PG_DN   &kp PG_UP    &kp END      &kp INS                                   &trans    &trans     &kp UP     &trans     &trans
-&trans        &trans      &trans       &trans       &trans  &trans          &trans           &trans    &kp LEFT   &kp RIGHT  &trans     &trans
-&trans        &trans      &trans       &trans       &trans  &trans          &trans           &trans    &trans     &kp DOWN   &trans     &trans
-&trans        &trans      &trans       &trans       &trans  &trans          &kp DEL          &trans                                     &trans
+&kp HOME       &kp PG_DN      &kp PG_UP   &kp END  &kp INS                                   &trans    &trans     &kp UP     &trans     &trans
+&kp LC(MINUS)  &kp LC(EQUAL)  &kp LC(N0)  &trans   &kp PSCRN  &trans          &trans         &trans    &kp LEFT   &kp RIGHT  &trans     &trans
+&trans         &trans         &trans      &trans   &trans     &trans          &trans         &trans    &trans     &kp DOWN   &trans     &trans
+&trans         &trans         &trans      &trans   &trans     &trans          &trans         &kp DEL                                   &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PG_DN) LC(PG_UP)>;
@@ -146,8 +130,8 @@
         FUN {
             bindings = <
 &kp F7  &kp F8  &kp F9  &trans   &trans                                       &trans        &trans        &trans        &trans      &trans
-&kp F4  &kp F5  &kp F6  &kp F11  &kp F12  &trans          &trans              &trans        &kp RSHFT     &kp RCTRL     &kp RALT    &kp RGUI
-&kp F1  &kp F2  &kp F3  &kp F10  &trans   &trans          &kp PSCRN           &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE    &kp C_PREV  &kp C_NEXT
+&kp F4  &kp F5  &kp F6  &kp F11  &kp F12  &trans          &trans              &kp RSHFT     &kp RCTRL     &kp RALT      &kp RGUI    &trans
+&kp F1  &kp F2  &kp F3  &kp F10  &trans   &trans          &kp PSCRN           &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE    &trans      &trans
 &trans  &trans  &trans  &trans   &trans   &trans          &trans              &trans                                                 &trans
             >;
         };
@@ -163,27 +147,19 @@
 
         SCROLL {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &kp LC(LA(I))  &kp LC(LA(O))  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LC(LS(TAB))  &kp LG(LC(LEFT))  &kp LG(LC(RIGHT))  &kp LC(TAB)  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+&trans  &trans  &trans        &trans         &trans                          &bt BT_SEL 0     &bt BT_SEL 1      &bt BT_SEL 2       &bt BT_SEL 3  &bt BT_SEL 4
+&trans  &trans  &kp LA(LEFT)  &kp LA(RIGHT)  &trans  &trans      &trans      &kp LC(LS(TAB))  &kp LG(LC(LEFT))  &kp LG(LC(RIGHT))  &kp LC(TAB)   &trans
+&trans  &trans  &trans        &trans         &trans  &trans      &trans      &trans           &trans            &trans             &trans        &trans
+&trans  &trans  &trans        &trans         &trans  &trans      &trans      &trans                                                              &trans
             >;
         };
 
         CONFIG {
             bindings = <
-&trans   &trans  &trans  &trans  &trans                             &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&tog 8   &trans  &trans  &trans  &trans  &trans      &trans         &trans        &trans        &trans        &trans        &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &bootloader    &trans        &trans        &trans        &trans        &bt BT_CLR
-&trans  &trans  &trans  &trans  &trans  &trans      &trans         &trans                                                  &bt BT_CLR_ALL
-            >;
-        };
-        BASE_MAC {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &hm LGUI F &trans &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &kp LGUI &trans &trans  &trans      &trans  &trans                          &trans
+&trans  &trans  &trans  &trans  &trans                                 &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+&trans  &trans  &trans  &trans  &trans  &trans          &trans         &trans        &trans        &trans        &trans        &bt BT_CLR
+&trans  &trans  &trans  &trans  &trans  &bootloader     &trans         &trans        &trans        &trans        &trans        &bt BT_CLR_ALL
+&trans  &trans  &trans  &trans  &trans  &trans          &trans         &trans                                                  &trans
             >;
         };
     };
