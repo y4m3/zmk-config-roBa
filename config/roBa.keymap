@@ -126,7 +126,7 @@
             bindings = <
 &kp HOME       &kp PG_DN      &kp PG_UP   &kp END  &kp INS                                   &trans    &trans     &kp UP     &trans     &trans
 &kp LC(MINUS)  &kp LC(EQUAL)  &kp LC(N0)  &trans   &kp PSCRN  &trans          &trans         &trans    &kp LEFT   &kp RIGHT  &trans     &trans
-&trans         &trans         &trans      &trans   &trans     &trans          &trans         &trans    &trans     &kp DOWN   &trans     &trans
+&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans          &trans         &trans    &trans     &kp DOWN   &trans     &trans
 &trans         &trans         &trans      &trans   &trans     &trans          &trans         &kp DEL                                   &trans
             >;
 
@@ -157,7 +157,7 @@
 
         SCROLL {
             bindings = <
-&trans  &trans  &trans        &trans         &trans                          &bt BT_SEL 0     &bt BT_SEL 1      &bt BT_SEL 2       &bt BT_SEL 3  &bt BT_SEL 4
+&trans  &trans  &trans        &trans         &trans                          &trans        &trans        &trans        &trans        &trans
 &trans  &trans  &kp LA(LEFT)  &kp LA(RIGHT)  &trans  &trans      &trans      &kp LC(LS(TAB))  &kp LG(LC(LEFT))  &kp LG(LC(RIGHT))  &kp LC(TAB)   &trans
 &trans  &trans  &trans        &trans         &trans  &trans      &trans      &trans           &trans            &trans             &trans        &trans
 &trans  &trans  &trans        &trans         &trans  &trans      &trans      &trans                                                              &trans
