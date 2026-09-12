@@ -128,27 +128,65 @@ static int set_profile_value(uint8_t command) {
 
     switch (command) {
     case ROBA_PROFILE_WIN:
-        profile_apple[active] = 0;
-        settings_save_one("roba/profile/apple", profile_apple, sizeof(profile_apple));
-        apply_layout(active);
-        break;
+        {
+            const uint8_t previous = profile_apple[active];
+            int rc;
+
+            profile_apple[active] = 0;
+            rc = settings_save_one("roba/profile/apple", profile_apple,
+                                   sizeof(profile_apple));
+            if (rc < 0) {
+                profile_apple[active] = previous;
+                return rc;
+            }
+            apply_layout(active);
+            break;
+        }
     case ROBA_PROFILE_APPLE:
-        profile_apple[active] = 1;
-        settings_save_one("roba/profile/apple", profile_apple, sizeof(profile_apple));
-        apply_layout(active);
-        break;
+        {
+            const uint8_t previous = profile_apple[active];
+            int rc;
+
+            profile_apple[active] = 1;
+            rc = settings_save_one("roba/profile/apple", profile_apple,
+                                   sizeof(profile_apple));
+            if (rc < 0) {
+                profile_apple[active] = previous;
+                return rc;
+            }
+            apply_layout(active);
+            break;
+        }
     case ROBA_PROFILE_KEEP:
-        profile_disconnect[active] = 0;
-        settings_save_one("roba/profile/disconnect", profile_disconnect,
-                          sizeof(profile_disconnect));
-        break;
+        {
+            const uint8_t previous = profile_disconnect[active];
+            int rc;
+
+            profile_disconnect[active] = 0;
+            rc = settings_save_one("roba/profile/disconnect", profile_disconnect,
+                                   sizeof(profile_disconnect));
+            if (rc < 0) {
+                profile_disconnect[active] = previous;
+                return rc;
+            }
+            break;
+        }
     case ROBA_PROFILE_DISCONNECT:
-        profile_disconnect[active] = 1;
-        settings_save_one("roba/profile/disconnect", profile_disconnect,
-                          sizeof(profile_disconnect));
-        apply_connection_policy();
-        k_work_reschedule(&delayed_policy_work, K_MSEC(1500));
-        break;
+        {
+            const uint8_t previous = profile_disconnect[active];
+            int rc;
+
+            profile_disconnect[active] = 1;
+            rc = settings_save_one("roba/profile/disconnect", profile_disconnect,
+                                   sizeof(profile_disconnect));
+            if (rc < 0) {
+                profile_disconnect[active] = previous;
+                return rc;
+            }
+            apply_connection_policy();
+            k_work_reschedule(&delayed_policy_work, K_MSEC(1500));
+            break;
+        }
     default:
         return -ENOTSUP;
     }
