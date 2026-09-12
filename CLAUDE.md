@@ -1,28 +1,29 @@
 # zmk-config-roBa
 
-roBa キーボード（分割キーボード）の ZMK ファームウェア設定リポジトリ。
+ZMK firmware configuration repository for the roBa split keyboard.
 
-## アーキテクチャ
+## Architecture
 
-- ZMK `v0.3-branch`（Zephyr 4.1 以前）を使用
-- ボード: Seeeduino XIAO BLE (`seeeduino_xiao_ble`)
-- トラックボール: PMW3610 ドライバ（kumamuk-git/zmk-pmw3610-driver）
+- Uses ZMK `v0.3-branch` (before the Zephyr 4.1 transition).
+- Board: Seeeduino XIAO BLE (`seeeduino_xiao_ble`).
+- Trackball: PMW3610 driver from `kumamuk-git/zmk-pmw3610-driver`.
 
-## 重要ファイル
+## Important files
 
-| ファイル | 役割 |
-|---------|------|
-| `config/west.yml` | ZMK マニフェスト（使用ブランチ・依存定義） |
-| `config/roBa.keymap` | キーマップ定義 |
-| `config/roBa.json` | ZMK Studio 用メタデータ |
-| `build.yaml` | GitHub Actions ビルドマトリクス |
-| `.github/workflows/build.yml` | CI ワークフロー |
-| `boards/` | カスタムボード定義 |
+| File | Purpose |
+| --- | --- |
+| `config/west.yml` | ZMK manifest, branch, and dependency definitions |
+| `config/roBa.keymap` | Keymap definition |
+| `config/roBa.json` | ZMK Studio metadata |
+| `build.yaml` | GitHub Actions build matrix |
+| `.github/workflows/build.yml` | CI workflow |
+| `boards/` | Custom board definitions |
+| `roba_module/` | Per-Bluetooth-profile layout and connection-policy behavior |
 
-## CI / ビルド
+## CI and builds
 
-- CI は `zmkfirmware/zmk` の **reusable workflow** を呼び出している
-- `build.yml` のワークフロー参照と `west.yml` の revision は **同じブランチ（`v0.3-branch`）** を指すこと
-  - 不一致になると、ボード名の形式差異などでビルドが失敗する
-  - 2026-03-05 に `@main` を参照していたため CI が壊れた（Zephyr 4.1 でボード名が `seeeduino_xiao_ble/nrf52840` 形式に変更されたが、v0.3-branch では `seeeduino_xiao_ble` のまま）
-- `build.yaml` のボード名は **`seeeduino_xiao_ble`**（qualifier なし）。v0.3-branch ではこの形式が正しい
+- CI calls the reusable workflow provided by `zmkfirmware/zmk`.
+- The workflow reference in `build.yml` and the revision in `west.yml` must point to the same branch (`v0.3-branch`).
+  - A mismatch can make the build fail because of differences such as board-name formats.
+  - On 2026-03-05, CI broke because it referenced `@main`: Zephyr 4.1 changed the board name to `seeeduino_xiao_ble/nrf52840`, while `v0.3-branch` still uses `seeeduino_xiao_ble`.
+- The board name in `build.yaml` is **`seeeduino_xiao_ble`** without a qualifier. This is the correct format for `v0.3-branch`.

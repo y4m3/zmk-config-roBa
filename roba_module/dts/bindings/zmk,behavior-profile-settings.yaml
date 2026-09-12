@@ -1,0 +1,16 @@
+description: roBa per-Bluetooth-profile layout and connection settings behavior
+
+compatible: "zmk,behavior-profile-settings"
+
+include: one_param.yaml
+
+properties:
+  apple-layer:
+    type: int
+    required: true
+    description: Layer activated for the Apple layout.
+
+  base-layer:
+    type: int
+    required: true
+    description: Layer activated for the Windows/Linux layout.

@@ -1,0 +1,7 @@
+config ROBA_PROFILE_SETTINGS
+    bool "roBa per-profile layout and connection settings"
+    default y
+    select SETTINGS
+    help
+      Store the Apple/Windows layout and connection policy for each Bluetooth
+      profile and restore them when the active profile changes.

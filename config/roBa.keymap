@@ -3,6 +3,26 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
+// Keep each Apple override just above its shared layer so layer priority is unchanged.
+#define L_BASE 0
+#define L_APPLE 1
+#define L_SYM 2
+#define L_APPLE_SYM 3
+#define L_NAV 4
+#define L_APPLE_NAV 5
+#define L_FUN 6
+#define L_APPLE_FUN 7
+#define L_MOUSE 8
+#define L_APPLE_MOUSE 9
+#define L_SCROLL 10
+#define L_APPLE_SCROLL 11
+#define L_CONFIG 12
+
+#define ROBA_WIN 0
+#define ROBA_APPLE 1
+#define ROBA_KEEP 2
+#define ROBA_DISCONNECT 3
+
 &lt {
     tapping-term-ms = <200>;
     quick-tap-ms = <175>;
@@ -15,12 +35,54 @@
 };
 
 &trackball {
-    automouse-layer = <4>;
-    scroll-layers = <5>;
+    automouse-layer = <L_MOUSE>;
+    // The PMW3610 driver checks the highest active layer, including Apple overrides.
+    scroll-layers = <L_SCROLL L_APPLE_SCROLL>;
 };
 
 / {
     macros {
+        // Profile policy is applied by the central-side profile-settings behavior.
+        bt_0: bt_0 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&bt BT_SEL 0>;
+        };
+
+        bt_1: bt_1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&bt BT_SEL 1>;
+        };
+
+        bt_2: bt_2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&bt BT_SEL 2>;
+        };
+
+        bt_3: bt_3 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&bt BT_SEL 3>;
+        };
+
+        bt_4: bt_4 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&bt BT_SEL 4>;
+        };
+
         release_mods: release_mods {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -29,6 +91,13 @@
     };
 
     behaviors {
+        roba_profile: roba_profile {
+            compatible = "zmk,behavior-profile-settings";
+            #binding-cells = <1>;
+            apple-layer = <L_APPLE>;
+            base-layer = <L_BASE>;
+        };
+
         hm: home_row_mod {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -62,7 +131,7 @@
             key-positions = <11 12>;
             timeout-ms = <50>;
             require-prior-idle-ms = <150>;
-            layers = <0>;
+            layers = <L_BASE L_APPLE>;
         };
 
         kana {
@@ -70,7 +139,7 @@
             key-positions = <12 13>;
             timeout-ms = <50>;
             require-prior-idle-ms = <150>;
-            layers = <0>;
+            layers = <L_BASE L_APPLE>;
         };
 
         eisu {
@@ -78,7 +147,7 @@
             key-positions = <18 19>;
             timeout-ms = <50>;
             require-prior-idle-ms = <150>;
-            layers = <0>;
+            layers = <L_BASE L_APPLE>;
         };
 
         unstuck {
@@ -92,8 +161,34 @@
         compatible = "zmk,conditional-layers";
 
         config_layer {
-            if-layers = <1 3>;
-            then-layer = <6>;
+            // Hold the left-thumb Tab (SYM) and right-thumb Esc (FUN) keys.
+            if-layers = <L_SYM L_FUN>;
+            then-layer = <L_CONFIG>;
+        };
+
+        apple_sym {
+            if-layers = <L_APPLE L_SYM>;
+            then-layer = <L_APPLE_SYM>;
+        };
+
+        apple_nav {
+            if-layers = <L_APPLE L_NAV>;
+            then-layer = <L_APPLE_NAV>;
+        };
+
+        apple_fun {
+            if-layers = <L_APPLE L_FUN>;
+            then-layer = <L_APPLE_FUN>;
+        };
+
+        apple_mouse {
+            if-layers = <L_APPLE L_MOUSE>;
+            then-layer = <L_APPLE_MOUSE>;
+        };
+
+        apple_scroll {
+            if-layers = <L_APPLE L_SCROLL>;
+            then-layer = <L_APPLE_SCROLL>;
         };
     };
 
@@ -104,11 +199,20 @@
             bindings = <
 &kp Q        &kp W       &kp E      &kp R        &kp T                                          &kp Y      &kp U  &kp I      &kp O    &kp P
 &hm LCTRL A  &hm LSHFT S &hm LALT D &hm LCTRL F  &kp G        &kp GRAVE        &kp SEMI        &kp H      &kp J  &kp K      &kp L    &kp ENTER
-&hm LSHFT Z  &kp X      &kp C       &kp V        &kp B        &kp MINUS        &kp EQUAL       &kp N      &kp M  &kp COMMA  &kp DOT  &lt 2 FSLH
-&hm LC(LSHFT) SQT &kp LGUI &kp LCTRL &lt 1 TAB    &lt 5 SPACE  &lt 2 ESC        &kp RSHFT                &bs_del                    &lt 3 ESC
+&hm LSHFT Z  &kp X      &kp C       &kp V        &kp B        &kp MINUS        &kp EQUAL       &kp N      &kp M  &kp COMMA  &kp DOT  &lt L_NAV FSLH
+&hm LC(LSHFT) SQT &kp LGUI &kp LCTRL &lt L_SYM TAB &lt L_SCROLL SPACE &lt L_NAV ESC &kp RSHFT            &bs_del                    &lt L_FUN ESC
             >;
 
             sensor-bindings = <&inc_dec_kp DOWN UP>;
+        };
+
+        APPLE {
+            bindings = <
+&trans       &trans     &trans  &trans       &trans                    &trans  &trans  &trans  &trans  &trans
+&hm LGUI A   &trans     &trans  &hm LGUI F   &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans       &trans     &trans  &trans       &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&hm LG(LSHFT) SQT &kp LCTRL &kp LGUI &trans  &trans  &trans    &trans  &trans                          &trans
+            >;
         };
 
         SYM {
@@ -122,15 +226,35 @@
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
+        APPLE_SYM {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &kp LGUI &trans                         &trans
+            >;
+        };
+
         NAV {
             bindings = <
 &kp HOME       &kp PG_DN      &kp PG_UP   &kp END  &kp INS                                   &trans    &trans     &kp UP     &trans     &trans
-&kp LC(MINUS)  &kp LC(EQUAL)  &kp LC(N0)  &trans   &kp PSCRN  &trans          &trans         &trans    &kp LEFT   &kp RIGHT  &trans     &trans
-&trans  &bt BT_SEL 4  &bt BT_SEL 3  &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0          &trans         &trans    &trans     &kp DOWN   &trans     &trans
+&kp LC(MINUS)  &kp LC(EQUAL)  &kp LC(N0)  &trans   &kp PSCRN  &trans          &roba_profile ROBA_WIN  &roba_profile ROBA_KEEP  &kp LEFT   &kp RIGHT  &trans     &trans
+&trans  &bt_4         &bt_3         &bt_2         &bt_1         &bt_0                 &roba_profile ROBA_APPLE  &roba_profile ROBA_DISCONNECT  &trans     &kp DOWN   &trans     &trans
 &trans         &trans         &trans      &trans   &trans     &trans          &trans         &kp DEL                                   &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PG_DN) LC(PG_UP)>;
+        };
+
+        APPLE_NAV {
+            bindings = <
+&kp LG(LEFT)  &trans        &trans     &kp LG(RIGHT) &trans                       &trans  &trans  &trans  &trans  &trans
+&kp LG(MINUS) &kp LG(EQUAL) &kp LG(N0) &trans        &kp LG(LS(N3)) &trans &trans  &trans  &trans  &trans  &trans  &trans
+&trans        &trans        &trans     &trans        &trans         &trans &trans  &trans  &trans  &trans  &trans  &trans
+&trans        &trans        &trans     &trans        &trans         &trans &trans  &trans                          &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp LC(TAB) LC(LS(TAB))>;
         };
 
         FUN {
@@ -144,6 +268,17 @@
             sensor-bindings = <&inc_dec_kp LA(RIGHT) LA(LEFT)>;
         };
 
+        APPLE_FUN {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                          &trans  &trans   &trans  &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans        &trans  &kp RGUI &trans  &kp RCTRL &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &kp LG(LS(N3)) &trans  &trans   &trans  &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans        &trans                            &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp LG(RBKT) LG(LBKT)>;
+        };
+
         MOUSE {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans    &trans
@@ -153,6 +288,17 @@
             >;
 
             sensor-bindings = <&inc_dec_kp LC(EQUAL) LC(MINUS)>;
+        };
+
+        APPLE_MOUSE {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                          &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp LG(EQUAL) LG(MINUS)>;
         };
 
         SCROLL {
@@ -166,10 +312,19 @@
             sensor-bindings = <&scroll_encoder>;
         };
 
+        APPLE_SCROLL {
+            bindings = <
+&trans  &trans  &trans       &trans       &trans                    &trans  &trans       &trans        &trans  &trans
+&trans  &trans  &kp LG(LBKT) &kp LG(RBKT) &trans  &trans    &trans  &trans  &kp LC(LEFT) &kp LC(RIGHT) &trans  &trans
+&trans  &trans  &trans       &trans       &trans  &trans    &trans  &trans  &trans       &trans        &trans  &trans
+&trans  &trans  &trans       &trans       &trans  &trans    &trans  &trans                                           &trans
+            >;
+        };
+
         CONFIG {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                                 &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&trans  &trans  &trans  &trans  &trans  &trans          &trans         &trans        &trans        &trans        &trans        &bt BT_CLR
+&trans      &roba_profile ROBA_WIN &trans  &trans  &trans                 &bt_0         &bt_1         &bt_2         &bt_3         &bt_4
+&roba_profile ROBA_APPLE &trans    &trans  &trans  &trans  &trans    &trans         &trans        &trans        &trans        &trans        &bt BT_CLR
 &trans  &trans  &trans  &trans  &trans  &bootloader     &trans         &trans        &trans        &trans        &trans        &bt BT_CLR_ALL
 &trans  &trans  &trans  &trans  &trans  &trans          &trans         &trans                                                  &trans
             >;
