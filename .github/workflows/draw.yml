@@ -2,7 +2,7 @@ name: "Draw Keymap"
 
 on:
   workflow_dispatch:
-  # push時に自動で実行する場合は、以下のコメントアウトを外す
+  # Uncomment the following lines to run automatically on push.
   # push:
   #   paths:
   #     - "config/roBa.keymap"

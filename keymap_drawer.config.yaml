@@ -1,4 +1,16 @@
 parse_config:
+  raw_binding_map:
+    "&bt_0": "BT 0"
+    "&bt_1": "BT 1"
+    "&bt_2": "BT 2"
+    "&bt_3": "BT 3"
+    "&bt_4": "BT 4"
+    "&bt BT_CLR_ALL": "BT CLR ALL"
+    "&bootloader": "BOOT"
+    "&roba_profile 0": "WIN"
+    "&roba_profile 1": "APPLE"
+    "&roba_profile 2": "KEEP"
+    "&roba_profile 3": "DISC"
   zmk_combos:
     unstuck:
       hidden: true

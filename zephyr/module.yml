@@ -1,4 +1,7 @@
 name: roBa
 build:
+  cmake: roba_module
+  kconfig: roba_module/Kconfig
   settings:
     board_root: .
+    dts_root: roba_module
