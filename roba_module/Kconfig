@@ -1,6 +1,7 @@
 config ROBA_PROFILE_SETTINGS
     bool "roBa per-profile layout and connection settings"
     default y
+    depends on ZMK_BLE
     select SETTINGS
     help
       Store the Apple/Windows layout and connection policy for each Bluetooth
