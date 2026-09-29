@@ -8,12 +8,6 @@
     quick-tap-ms = <175>;
 };
 
-&mt {
-    flavor = "balanced";
-    tapping-term-ms = <200>;
-    quick-tap-ms = <175>;
-};
-
 &trackball {
     automouse-layer = <4>;
     scroll-layers = <5>;
@@ -32,12 +26,11 @@
         hm: home_row_mod {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "balanced";
+            flavor = "tap-preferred";
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
             require-prior-idle-ms = <250>;
             bindings = <&kp>, <&kp>;
-            hold-trigger-on-release;
         };
 
         bs_del: backspace_delete {
