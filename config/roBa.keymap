@@ -28,12 +28,6 @@
     quick-tap-ms = <175>;
 };
 
-&mt {
-    flavor = "balanced";
-    tapping-term-ms = <200>;
-    quick-tap-ms = <175>;
-};
-
 &trackball {
     automouse-layer = <L_MOUSE>;
     // The PMW3610 driver checks the highest active layer, including Apple overrides.
@@ -101,12 +95,11 @@
         hm: home_row_mod {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "balanced";
+            flavor = "tap-preferred";
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
             require-prior-idle-ms = <250>;
             bindings = <&kp>, <&kp>;
-            hold-trigger-on-release;
         };
 
         bs_del: backspace_delete {
