@@ -58,6 +58,8 @@ build_one() {
 
     if [ "${shield}" = "roBa_R" ]; then
         snippet_args=(-S studio-rpc-usb-uart)
+    elif [ "${shield}" = "roBa_L" ]; then
+        snippet_args=(-S zmk-usb-logging)
     fi
 
     west build -s zmk/app \
