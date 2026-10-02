@@ -54,16 +54,10 @@ west zephyr-export
 build_one() {
     local shield="$1"
     local build_dir="/work/build/${shield}"
-    local snippet_args=()
-
-    if [ "${shield}" = "roBa_R" ]; then
-        snippet_args=(-S studio-rpc-usb-uart)
-    fi
 
     west build -s zmk/app \
         -d "${build_dir}" \
         -b seeeduino_xiao_ble \
-        "${snippet_args[@]}" \
         -- \
         -DSHIELD="${shield}" \
         -DZMK_CONFIG=/work/config \
