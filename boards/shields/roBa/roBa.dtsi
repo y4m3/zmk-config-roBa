@@ -98,7 +98,7 @@
         compatible = "alps,ec11";
         a-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        steps = <12>;
+        steps = <48>; // EC05E1220202: 12 pulses x 4 edges per rotation
         status = "disabled";
     };
 
@@ -109,7 +109,7 @@
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder &right_encoder>;
-        triggers-per-rotation = <10>;
+        triggers-per-rotation = <12>; // 12 detents: 1 click = 1 trigger
     };
 
     trackball_listener: trackball_listener {
